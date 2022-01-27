@@ -5,8 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet">
 </head>
 <body>
-sadsadsadsad
+
 </body>
 </html>
