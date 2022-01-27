@@ -8,7 +8,7 @@
 }
 
 nav {
-	position: fixed;
+	position: fixed-top;
 	background: #1b1b1b;
 	width: 100%;
 	padding: 10px 0;
@@ -53,9 +53,119 @@ nav .menu {
 }
 
 
-
 .menu ul li a:hover {
 	background:#fff;
 	color: #000;
 
+}
+
+section{
+		width: 70%;
+		height: 90%;
+		background: white;
+		text-align: center;
+		margin: 10vh auto;
+	}
+	
+.list_wrap, .view_wrap{
+	width:100%;
+	margin:100px auto;
+}
+	
+.list_title{
+	margin-bottom: 30px;
+	text-align: left;
+	background:lightgray;
+	width:100%;
+	border-radius:12px;
+	padding:50px;
+}
+
+.listtable_wrap tbody tr:hover{
+	background-color:#b5d0e0;
+}
+
+.view_title{
+	margin-bottom: 30px;
+	text-align: left;
+}
+
+.list_title strong{
+	font-size:3rem;
+}
+
+.view_title strong{
+	font-size:1.8rem;
+}
+
+.list_title p{
+	margin-top:5px;
+	font-size:large;
+}
+
+.list_insert_button{
+	margin-top:30px;
+	text-align:center;
+	
+}
+
+.listtable_wrap a{
+	text-decoration:none;
+	color:inherit;
+}
+
+
+.listtable_wrap thead{
+	background:darkgray;
+	color:white;
+}
+
+.listtable_wrap, .view_table td, .view_table th{
+	border-bottom:1px solid gray;
+}
+
+.view_table{
+	text-align:center;
+}
+
+.view_table td{
+	text-align:left;
+}
+
+.view_table th{
+	color:#ff8da1;
+}
+
+
+table{
+	border-collapse:collapse;
+}
+
+td {
+	padding:10px;
+	height:10px;
+	width:100px;
+}
+
+th{
+	padding:10px;
+	height:25px;
+	width:120px;
+	font-size:large;
+}
+
+button{
+	background-color:#b5d0e0;
+	color:white;
+	width:100%;
+	border-radius:12px;
+	border:none;
+	height:40px;
+	font-size:large;
+	font-weight:bold;
+	
+}
+
+button:hover{
+	background-color:#ff5563;
 }
