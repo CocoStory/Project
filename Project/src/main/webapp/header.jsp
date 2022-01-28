@@ -20,9 +20,17 @@
 			<ul>
 				<li><a href="#">Introduction</a></li>
 				<li><a href="<%=request.getContextPath() %>/question/list.jsp">Q&A</a></li>
+				<%
+			if(m == null){ //null 상태는 로그인 하지 않은 상태 
+				%>
 				<li><a href="<%=request.getContextPath() %>/login/login.jsp">Login</a></li>
-				<li><a href="<%=request.getContextPath() %>/login/mypage.jsp">Mypage</a></li>
+				<li><a href="<%=request.getContextPath() %>/login/join.jsp">Sign up</a></li>
+				<% 	
+				}else{
+				%>
+				<li><a href="<%=request.getContextPath() %>/mypage/mypage.jsp">Mypage</a></li>
 				<li><a href="<%=request.getContextPath() %>/login/logout.jsp">Logout</a></li>
+				<%} %>
 			</ul>
 		</div>
 	</nav>

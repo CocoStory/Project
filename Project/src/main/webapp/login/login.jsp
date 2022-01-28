@@ -16,13 +16,13 @@
 		</div>
 		<div class="login_form">
 			<form action="loginOk.jsp" method="post">
-				<p><input type="text" name="userid" placeholder="아이디를 입력하세요"></p>
-				<p><input type="password" name="upwd" placeholder="비밀번호를 입력하세요"></p>
+				<p><input type="text" name="userid" placeholder="ID입력"></p>
+				<p><input type="password" name="upwd" placeholder="PASSWORD입력"></p>
 				<input type="submit" value="로그인">
 			</form>
 		</div>
-		<div>
-			<p>계정이 없으신가요?<a href="#">회원가입</a></p>
+		<div class="notuser">
+			<p>계정이 없으신가요?<a href="join.jsp"> 회원가입</a></p>
 		</div>
 	</div>
 	</section>	

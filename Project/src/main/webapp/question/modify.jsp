@@ -39,6 +39,7 @@
 			qidx_ = rs.getInt("qidx");
 		}
 		
+		//System.out.println(qcontent_);
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -66,32 +67,32 @@
 	</div>
 	<hr>
 	<article>
+		<div class="modify_table">
+		<form action="modifyOk.jsp" method="post">
+		<input type="hidden" name="qidx" value="<%=qidx_ %>">
+			<table width="100%">
+					<tr>
+						<th>글제목</th>
+						<td colspan="3"><input type="text" size="50" name="qtitle" value="<%=qtitle_%>"></td>
+					</tr>
+					<tr>
+						<th>글번호</th>
+						<td><%=qidx_ %></td>
+						<th>작성자</th>
+						<td><%=qwriter_ %></td>
+					</tr>
+					<tr height="300">
+						<th>내용</th>
+						<td colspan="3">
+							<textarea name="qcontent"><%=qcontent_ %></textarea><!-- 반드시 name이 있어야 입력양식이 파라미터로 전송된다 -->
+						</td>
+					</tr>
+				</table>
+				<button type="button" onclick="location.href='view.jsp?qidx=<%=qidx%>'">취소</button>
+				<button>저장</button> 
+		</form>
+		</div><!-- 표 -->
 	</article>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 </section>
 <%@ include file="/footer.jsp" %>

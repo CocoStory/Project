@@ -14,8 +14,22 @@
 <body>
 	<%@ include file="header.jsp" %>
 	<section>
-	
-	
+	<div class="index_wrap">
+		<%
+			if(login != null){ //null check 
+		%>
+		<div class="index_login">
+			<br>
+			<strong><%=login.getUname() %>님 로그인을 환영합니다.</strong>
+		</div>
+		<% 	
+			}	
+		%>
+		<div class="img">
+			<img src="image/coding.jpg" width="100%" alt="코딩이미지">
+		</div>
+		
+	</div>
 	</section>	
 	<%@ include file="footer.jsp" %>
 </body>

@@ -67,36 +67,34 @@ section{
 		margin: 10vh auto;
 	}
 	
-.list_wrap, .view_wrap{
+/*.list_wrap, .view_wrap, .modfiy_wrap, .insert_wrap, .index_wrap{
 	width:100%;
 	margin:100px auto;
-}
+}*/
 	
 .list_title{
 	margin-bottom: 30px;
 	text-align: left;
-	background:lightgray;
+	background:#dcdcdc;
 	width:100%;
 	border-radius:12px;
 	padding:50px;
 }
 
 .listtable_wrap tbody tr:hover{
-	background-color:#b5d0e0;
+	background-color:pink;
 }
 
-.view_title{
+.view_title, .modify_title, .insert_title{
 	margin-bottom: 30px;
 	text-align: left;
+	font-size:1.8rem;
 }
 
 .list_title strong{
 	font-size:3rem;
 }
 
-.view_title strong{
-	font-size:1.8rem;
-}
 
 .list_title p{
 	margin-top:5px;
@@ -120,7 +118,7 @@ section{
 	color:white;
 }
 
-.listtable_wrap, .view_table td, .view_table th{
+.listtable_wrap, .view_table td, .view_table th, .modify_table td, .modify_table th, .insert_table td, th{
 	border-bottom:1px solid gray;
 }
 
@@ -128,11 +126,11 @@ section{
 	text-align:center;
 }
 
-.view_table td{
+.view_table td, .modify_table td, .insert_table td{
 	text-align:left;
 }
 
-.view_table th{
+.view_table th, .modify_table th, .insert_table th{
 	color:#ff8da1;
 }
 
@@ -158,7 +156,7 @@ button{
 	background-color:#b5d0e0;
 	color:white;
 	width:100%;
-	border-radius:12px;
+	border-radius:8px;
 	border:none;
 	height:40px;
 	font-size:large;
@@ -167,5 +165,231 @@ button{
 }
 
 button:hover{
-	background-color:#ff5563;
+	background-color:pink;
+}
+
+.modify_table input[type=text], .insert_table input[type=text]{
+	width:100%;
+	height:30px;
+	border:1px solid #dcdcdc;
+	border-radius:8px;
+	padding:10px;
+}
+
+.modify_table textarea, .insert_table textarea{
+	width:100%;
+	height:300px;
+	border:1px solid #dcdcdc;
+	border-radius:8px;
+	padding:20px;
+}	
+
+.insert_table input[type=button],input[type=submit]{
+	background-color:#b5d0e0;
+	color:white;
+	width:100%;
+	border-radius:12px;
+	border:none;
+	height:40px;
+	font-size:large;
+	font-weight:bold;
+}
+
+.insert_table input[type=button]:hover, input[type=submit]:hover{
+		background-color:pink;
+}
+
+.insert_table th{
+	width:25%;
+}
+
+/*index*/
+
+
+/*.index_login{
+	height:60px;
+	width:100%;
+	background:#dcdcdc;
+	border-radius:12px;
+}*/
+
+.index_login strong{
+	text-align: left;
+	font-size:1.5rem;
+}
+
+
+/*login*/
+
+.login_wrap{
+	width:50%;
+	margin:100px auto;
+	height:650px;
+}
+
+.login_title{
+	margin-bottom: 30px;
+	text-align: center;
+	font-size:1.5rem;
+}
+
+.login_form input[type=text]{
+	width:100%;
+	height:45px;
+	border:1px solid #dcdcdc;
+	border-radius:8px;
+	padding:10px;
+	margin-bottom:10px
+}
+
+.login_form input[type=password]{
+	width:100%;
+	height:45px;
+	border:1px solid #dcdcdc;
+	border-radius:8px;
+	padding:10px;
+	margin-bottom:20px
+}
+
+.login_form input[type=text]::placeholder, .login_form input[type=password]::placeholder{
+	text-align:center;
+	font-size:1.2rem;
+	font-weight:bold;
+}
+
+.notuser, .alreadyuser{
+	margin:50px;
+	text-align:right;
+	font-size:1.1rem;
+	color:gray;
+}
+
+.notuser a, .alreadyuser a{
+	text-decoration:none;
+	color:royalblue;
+	font-weight:bold;
+}
+
+
+/*join*/
+.join_wrap{
+	width:40%;
+	margin:100px auto;
+}
+.join_title{
+	margin-bottom: 30px;
+	text-align: left;
+	font-size:1.8rem;
+}
+
+.joinbox{
+	width:100%;
+	text-align: left;
+}
+
+.joinbox input[type=password]{
+	width:50%;
+	height:45px;
+	border:1px solid #dcdcdc;
+	border-radius:8px;
+	padding:5px;
+	margin-bottom:10px
+}
+
+.joinbox input[type=text]{
+	width:50%;
+	height:45px;
+	border:1px solid #dcdcdc;
+	border-radius:8px;
+	padding:5px;
+	margin-bottom:10px
+}
+
+.inputname{
+	margin-bottom:10px;
+	font-size:large;
+	font-weight:bold;
+	color:royalblue;
+	
+}
+
+.phone input[type=text]{
+	width:25%;
+}
+
+.phone select{
+	width:25%;
+	padding:5px;
+	height:45px;
+}
+
+.jointable input[type=button]{
+	background-color:#b5d0e0;
+	color:white;
+	width:20%;
+	border-radius:8px;
+	border:none;
+	height:45px;
+	font-size:large;
+	font-weight:bold;
+}
+
+.jointable input[type=button]:hover{
+	background-color:pink;
+}
+
+.img{
+	margin-top:100px;
+}
+
+/*mypage*/
+.mypage_inline div{
+	display:inline-block;
+}
+
+.mypage_inline{
+	width:100%;
+	height:250px;
+	margin-top:100px;
+}
+
+.mypage_inline p{
+	color:gray;
+	font-size:xx-large;
+}
+
+.mypage_inline span{
+	color:#ff8da1;
+	font-size:1.1rem;
+	font-weight:bold;
+}
+
+.mypage_inline input[type=button]{
+	background-color:#b5d0e0;
+	color:white;
+	width:150px;
+	border-radius:8px;
+	border:none;
+	height:45px;
+	font-size:large;
+	font-weight:bold;
+	margin:30px quto;
+}
+
+
+.mypage_btn input[type=button]{
+	margin-top:50px;
+	background-color:#b5d0e0;
+	color:white;
+	width:150px;
+	border-radius:8px;
+	border:none;
+	height:45px;
+	font-size:large;
+	font-weight:bold;
+	margin:30 10 30 10px;
+}
+
+input[type=button]:hover{
+	background-color:pink;
 }

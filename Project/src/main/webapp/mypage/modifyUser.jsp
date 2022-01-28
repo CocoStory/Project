@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet">
+<title>회원정보 수정</title>
 </head>
 <body>
-	© Coding story. All Rights Reserved.
+adasd
 </body>
 </html>
