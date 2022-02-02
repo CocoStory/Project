@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ page import="java.sql.*" %>
 <%@ page import="Project.vo.*" %>
+<%@ page import="java.util.*" %>    
 <%
 	LoginUser login = (LoginUser)session.getAttribute("loginUser");
+
+	request.setCharacterEncoding("UTF-8");
+
+	int uidx_ = login.getUidx();
+	//System.out.print(uidx);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -33,7 +41,7 @@
 		<hr>
 		<div class="mypage_inline">
 			<div class="#">
-			<input type="button" value="내 정보 수정" onclick="location.href='modifyUser.jsp'">
+			<input type="button" value="내 정보 수정" onclick="location.href='modifyUser.jsp?uidx=<%=uidx_%>'">
 			</div>
 			<div class="#">
 			<p>5<br><span>게시글</span></p>
