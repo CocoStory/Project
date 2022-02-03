@@ -126,7 +126,7 @@ section{
 	text-align:center;
 }
 
-.view_table td, .modify_table td, .insert_table td{
+.view_table td, .modify_table td, .insert_table td, .MU_table{
 	text-align:left;
 }
 
@@ -276,10 +276,25 @@ button:hover{
 	width:40%;
 	margin:100px auto;
 }
+
+.MU_wrap{
+	width:50%;
+	margin:100px auto;
+}
 .join_title{
 	margin-bottom: 30px;
 	text-align: left;
 	font-size:1.8rem;
+}
+
+.modifyUser_title{
+	margin-bottom: 30px;
+	text-align: left;
+}
+
+.modifyUser_title strong{
+	font-size:1.8rem;
+	color:royalblue;
 }
 
 .joinbox{
@@ -392,4 +407,44 @@ button:hover{
 
 input[type=button]:hover{
 	background-color:pink;
+}
+
+
+/*modifyUser*/
+.MU_table{
+	width:100%;
+	margin-top:20px;
+	margin-bottom:30px;
+}
+
+.MU_table th{
+	width:25%;
+	text-align: left;
+	border:none;
+	font-weight:normal;
+	font-size:medium;
+}
+
+.MU_table td:nth-child(2){
+	width:2px;
+	color:#dcdcdc;
+}
+
+.MU_table input[type=text], input[type=password]{
+	height:20px;
+	border:2px solid #dcdcdc;
+	padding:10px;
+	
+}
+
+.MU_table select{
+	padding:5px;
+	height:25px;
+}
+
+.modifyUserBox button{
+	width:25%;
+	border-radius:0px;
+	border:none;
+	height:40px;
 }

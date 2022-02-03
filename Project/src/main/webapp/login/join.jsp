@@ -23,6 +23,7 @@
 				<div class="jointable id">
 					<input type="text" name="userid" placeholder="ID 입력"> 
 					<input type="button" value="중복확인">
+					<div id="check_id"></div>
 				</div>
 				<div class="inputname">
 					<label>비밀번호<span class="red"></span></label>
@@ -57,7 +58,7 @@
 				<div class="joinsubmit">
 					<br>
 					<br>
-					<input type="submit" value="회원가입">
+					<input type="submit" value="회원가입" onclick="check()">
 				</div>
 				<div class="alreadyuser">
 				<p>이미 계정이 있으신가요?<a href="login.jsp"> 로그인</a></p>
@@ -68,4 +69,13 @@
 </section>
 <%@ include file="/footer.jsp" %>
 </body>
+<script src = "js/jquery-3.6.0.min.js"></script>
+<script>
+	$()
+
+
+function check(){
+		alert("회원가입이 완료되었습니다");
+}
+</script>
 </html>

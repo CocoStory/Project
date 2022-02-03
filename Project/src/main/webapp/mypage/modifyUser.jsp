@@ -47,10 +47,7 @@
 		if(rs != null) rs.close();
 	}
 	
-
-	System.out.print(uidx);
-	
-    
+    System.out.println(uidx);
 %>	
 <!DOCTYPE html>
 <html>
@@ -62,60 +59,61 @@
 <body>
 <%@ include file="/header.jsp" %>
 <section>
-	<div class="join_wrap">
-		<div class="join_title">
-		<strong>회원정보 수정</strong>
+	<div class="MU_wrap">
+		<div class="modifyUser_title">
+		<strong>회원정보 수정</strong><br><br>
+		고객님께서 가입하신 코딩스토리 회원정보입니다.<br>
+		비밀번호와 휴대폰 번호를 변경하고자 하는 경우 이 화면에서 수정하시기 바랍니다.
 		</div>
 		<hr>
 		<div class="modifyUserBox">
-			<form action="modifyUserOk.jsp" method="post">
-				<table>
+			<form name="MUform" action="modifyUserOk.jsp" method="post">
+				<input type="hidden" name="uidx" value="<%=uidx_ %>">
+				<table class="MU_table">
 					<tr>
 						<th>아이디</th>
+						<td>|</td>
 						<td><%=userid_%></td>
 					</tr>
 					<tr>
 						<th>이름</th>
+						<td>|</td>
 						<td><%=uname_ %></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
+						<td>|</td>
 						<td><input type="password" name="upwd"></td>
 					</tr>
-					<tr><!-- 비밀번호와 비밀번호 확인이 일치해야 전송이 되도록 onblur 함수 넣기 -->
+					<tr><!-- 비밀번호와 비밀번호 확인이 일치해야 전송이 되도록 함수 넣기 -->
 						<th>비밀번호 확인</th>
+						<td>|</td>
 						<td><input type="password" name="upwd"></td>
 					</tr>
 					<tr>
 						<th>휴대전화</th>
+						<td>|</td>
 						<td>
 						<select name="uphone1" id="phone1">
-						<option value="010">010</option>
-						<option value="010">011</option>
-						<option value="010">016</option>
+							<option value="010">010</option>
+							<option value="010">011</option>
+							<option value="010">016</option>
 						</select>
 							<input type="text" class="impor" name="uphone2" id="phone2" maxlength="4" >
 							<input type="text" class="impor" name="uphone3" id="phone3" maxlength="4" >
 						</td>
 					</tr>
 				</table>
-			
-			
-			
-			<!-- <div class="modifyIndex">
-				<br>
-				<label>아이디</label>
-			</div>
-			<div>
-				
-			</div>
-		</div>-->
-		
-		
-
+				<button type="button" onclick="location.href='mypage.jsp'">취소</button>
+				<button onclick="check()">저장</button> 
 		</form>
 	</div>
 </section>
 <%@ include file="/footer.jsp" %>
 </body>
+<script>
+function check(){
+		alert("회원정보가 수정되었습니다");
+}
+</script>
 </html>

@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>  
-<%  //board 수정을 위한 눈에 보이지 않는 화면 
+<%  
 	request.setCharacterEncoding("UTF-8"); //인코딩처리
 	
 	
 	//전송된 데이터 반환
-	String qtitle = request.getParameter("qtitle");
-	String qcontent = request.getParameter("qcontent");
-	String qidx = request.getParameter("qidx");
+	String upwd = request.getParameter("upwd");
+	String uphone1 = request.getParameter("uphone1");
+	String uphone2 = request.getParameter("uphone2");
+	String uphone3 = request.getParameter("uphone3");
+	String uphone = uphone1 + uphone2 + uphone3;
+	String uidx = request.getParameter("uidx");
+	
+    System.out.println(uphone);
 	
 	//PK가 필요하다 - 원하는 한 건에대한 데이터를 수정하기 위해서임
 	//아래 부분은 데이터 접근을 위해 반드시 필요
@@ -29,12 +34,11 @@
 		conn = DriverManager.getConnection(url,user,pass);
 		
 		//sql문 작성 
-		String sql = " update question set " 
-				   + " qtitle = '"+qtitle+"' " 
-				   + " ,qcontent = '"+qcontent+"' "
-				   + "where qidx="+qidx;
+		String sql = " update loginUser set " 
+				   + " upwd = '"+upwd+"' " 
+				   + " ,uphone = '"+uphone+"' "
+				   + "where uidx="+uidx;
 					
-		//"update board set subject = '??', content='??' where bidx=?"
 				
 		// JDBC 3단계 : PreparedStatement 객체 생성
 		psmt = conn.prepareStatement(sql);
@@ -45,10 +49,10 @@
 		
 		if(result>0){
 			//0보다 크면 update가 잘 된 것 
-			//out.print("<script>alert('수정완료!');</script>");
-			response.sendRedirect("view.jsp?qidx="+qidx);
+			out.print("<script>alert('수정완료!');</script>");
+			response.sendRedirect("mypage.jsp?uidx="+uidx);
 		}else{
-			response.sendRedirect("list.jsp");
+			response.sendRedirect("modifyUser.jsp");
 		}
 		
 		

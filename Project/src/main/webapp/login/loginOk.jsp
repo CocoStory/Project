@@ -39,7 +39,19 @@
 		if(login != null){//입력한 아이디,패스워드가 존재하면 login 이 null이 아니게 된다.
 			response.sendRedirect(request.getContextPath());
 		}else{
-			response.sendRedirect("login.jsp"); //다시 로그인 페이지로 이동 
+			//session.setAttribute("errMsg","로그인 정보가 올바르지 않습니다."); //session 에 하면 계속 유지되므로
+			//* response.set("errMsg", "로그인 정보가 올바르지 않습니다.");
+			//response.sendRedirect("login.jsp"); //다시 로그인 페이지로 이동  
+			//request 방식을 사용하여 1회성으로만 에러 메세지가 뜨게 함
+			
+			%>
+			<form name="frm" action="login.jsp" method="post">
+				<input type="hidden" name="errMsg" value="로그인 정보가 올바르지 않습니다.">
+			</form>
+			<script>
+				document.frm.submit();
+			</script>
+			<%
 		}
 		
 		
