@@ -73,7 +73,8 @@ section{
 }*/
 	
 .list_title{
-	margin-bottom: 30px;
+	margin-bottom:40px;
+	height:300px;
 	text-align: left;
 	background:#dcdcdc;
 	width:100%;
@@ -82,7 +83,7 @@ section{
 }
 
 .listtable_wrap tbody tr:hover{
-	background-color:pink;
+	background-color:aliceblue;
 }
 
 .view_title, .modify_title, .insert_title{
@@ -102,10 +103,18 @@ section{
 }
 
 .list_insert_button{
-	margin-top:30px;
 	text-align:center;
+	width:15%;
+	height:75px;
 	
 }
+
+.list_insert_button button{
+	height:100%;
+	background:mediumslateblue;
+	font-size:x-large;
+}
+
 
 .listtable_wrap a{
 	text-decoration:none;
@@ -121,6 +130,47 @@ section{
 .listtable_wrap, .view_table td, .view_table th, .modify_table td, .modify_table th, .insert_table td, th{
 	border-bottom:1px solid gray;
 }
+
+.list_searchbar{
+	width:100%;
+	heigth:65px;
+	margin-bottom:35px;
+	text-align:right;
+}
+
+.list_searchbar input[type=submit]{
+	width:8%;
+	border-radius:0px;
+	color:gray;
+	background:white;
+	border:1px solid #dcdcdc;
+	font-size:medium;
+	font-weight:medium;
+}
+
+.list_searchbar input[type=submit]:hover{
+	background:aliceblue;
+}
+
+.list_searchbar select{
+	height:40px;
+	width:6%;
+	border:1px solid #dcdcdc;
+	color:gray;	
+	font-size:medium;
+	font-weight:medium;
+}
+
+.list_searchbar input[type=text]{
+	width:26%;
+	height:40px;
+	color:gray;
+	background:white;
+	border:1px solid #dcdcdc;
+	font-size:medium;
+	font-weight:medium;
+}
+
 
 .view_table{
 	text-align:center;

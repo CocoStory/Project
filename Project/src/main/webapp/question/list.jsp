@@ -20,13 +20,14 @@
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	String sql = "select * from question";
+	String sql = "select * from question order by qidx desc";
 	
 	try{
 		
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url,user,pass);
 		
+
 		stmt = conn.createStatement();
 		
 		rs = stmt.executeQuery(sql);
@@ -47,13 +48,25 @@
 			<strong>Hello, Q&A</strong>
 			<p>궁금한 것을 물어보세요!</p>
 			<p>코딩관련한 것들을 질문하시면 답변을 달아드립니다!</p>
-		</div>
-		<div class="list_insert_button">
-			<% if(login != null){ %>
-			<button onclick="location.href='insert.jsp'">등록</button>
-			<% } %>
+			<br><br>
+			<div class="list_insert_button">
+				<% if(login != null){ %>
+				<button onclick="location.href='insert.jsp'">글쓰기</button>
+				<% } %>
+			</div>
 		</div>
 		<div class="list_searchbar">
+			<form action="list.jsp">
+				<select name="searchType">
+					<option value="qtitle" <%if(searchType != null && searchType.equals("qtitle")) out.print("selected"); %>>글제목</option>
+					<option value="qwriter" <%if(searchType != null && searchType.equals("qwriter")) out.print("selected"); %>>작성자</option>
+				</select>
+				<input type="text" name="searchValue"
+				<%	if(searchValue != null && !searchValue.equals("")&& !searchValue.equals("null")) 
+					out.print("value='"+searchValue+"'");
+				%>>
+				<input type="submit" value="검색">
+			</form>
 		</div>
 		<div class="listtable_wrap">
 		<table width="100%">
