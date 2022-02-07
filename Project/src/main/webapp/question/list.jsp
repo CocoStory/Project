@@ -13,6 +13,8 @@
 	String searchValue = request.getParameter("searchValue");
 	String searchType = request.getParameter("searchType");
 	
+	
+	
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "system";
 	String pass = "1234";
@@ -20,16 +22,28 @@
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	String sql = "select * from question order by qidx desc";
+	
 	
 	try{
 		
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url,user,pass);
+		String sql = " select * from question";
+		
+		if(searchValue != null && !searchValue.equals("")){
+			if(searchType.equals("qtitle")){
+				sql +=" where qtitle like '%"+searchValue+"%'";
+			}else if(searchType.equals("qwriter")){
+				sql +=" where qwriter like '%"+searchValue+"%'";	
+			}
+		}
 		
 
-		stmt = conn.createStatement();
+		sql += " order by qidx desc";
 		
+		
+		
+		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 
 %>
@@ -55,7 +69,7 @@
 				<% } %>
 			</div>
 		</div>
-		<div class="list_searchbar">
+		<div class="list_searchbar searchArea">
 			<form action="list.jsp">
 				<select name="searchType">
 					<option value="qtitle" <%if(searchType != null && searchType.equals("qtitle")) out.print("selected"); %>>글제목</option>
