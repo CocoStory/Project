@@ -1,8 +1,8 @@
-<%@page import="Project.util.PagingUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>  
 <%@ page import="Project.vo.*" %> 
+<%@ page import="Project.util.*" %> 
 <%
 
 	LoginUser login = (LoginUser)session.getAttribute("loginUser");
@@ -14,13 +14,14 @@
 	String searchType = request.getParameter("searchType");
 	
 	
+		
 	
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "system";
 	String pass = "1234";
 	
 	Connection conn = null;
-	Statement stmt = null;
+	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	
 	
@@ -42,10 +43,12 @@
 		sql += " order by qidx desc";
 		
 		
+		psmt = conn.prepareStatement(sql);
+		rs = psmt.executeQuery();
+	
 		
-		stmt = conn.createStatement();
-		rs = stmt.executeQuery(sql);
-
+		
+		
 %>
 <!DOCTYPE html>
 <html>
@@ -108,8 +111,10 @@
 			</tbody>
 		</table>
 		</div>
+		<!-- 
 		<div class="list_paging">
-		</div>
+			
+		</div> -->
 	
 	</div>
 	</section>	
@@ -123,8 +128,8 @@
 		if(conn != null){
 			conn.close();
 		}
-		if(stmt != null){
-			stmt.close();
+		if(psmt != null){
+			psmt.close();
 		}
 		if(rs != null){
 			rs.close();

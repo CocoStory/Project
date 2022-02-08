@@ -214,6 +214,20 @@ button{
 	
 }
 
+.view_button{
+	text-align:left;
+}
+
+.view_button button{
+	margin:5px;
+	width:100px;
+	display:inline-block;
+	
+}
+
+
+
+
 button:hover{
 	background-color:pink;
 }
@@ -497,4 +511,81 @@ input[type=button]:hover{
 	border-radius:0px;
 	border:none;
 	height:40px;
+}
+
+/*´ñ±Û*/
+.answerInput{
+	width:100%;
+	height:100px;
+	text-align:left;
+	color:cornflowerblue;
+	font-size:large;
+	font-weight:bold;
+}
+
+.answerInput input[type=text]{
+	margin:10px;
+	width:100%;
+	height:100px;
+	color:gray;
+	border-radius:8px;
+	background:white;
+	border:1px solid #dcdcdc;
+	font-size:medium;
+	font-weight:medium;
+}
+
+.answerInput input[type=button]{
+	margin-left:11px;
+	background:cornflowerblue ;
+	color:white;
+	border-radius:8px;
+	border:none;
+	height:40px;
+	font-size:large;
+	font-weight:bold;
+	width:100px;
+}	
+
+.answerInput input[type=button]:hover{
+	background:pink;
+}
+
+#answerTable{
+	margin:3px;
+	width:100%;	
+	font-size:large;
+	background:aliceblue;
+	border-radius:8px;
+	text-align:left;
+	border-bottom:1px solid #dcdcdc;
+}
+
+#answerTable th{
+	border-bottom:1px solid #dcdcdc;
+	height:61px;
+}
+
+#answerTable td{
+	border-bottom:1px solid #dcdcdc;
+}
+
+#answerTable td:nth-child(3){
+	text-align:right;
+}
+
+#answerTable input[type=button]{
+	width:100px;
+	height:40px;
+	border-radius:0px;
+	color:gray;
+	background:white;
+	border:1px solid #dcdcdc;
+	font-size:medium;
+	font-weight:medium;
+	
+}
+
+#answerTable input[type=button]:hover{
+	background:#dcdcdc;
 }

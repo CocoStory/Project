@@ -24,12 +24,18 @@
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	
+	//댓글
+	PreparedStatement psmtAnswer = null;
+	ResultSet rsAnswer = null;
+	
 
 	String qtitle_ = "";
 	String qwriter_ = "";
 	String qcontent_ = "";
 	int qidx_ = 0;
 	int uidx_ = 0;
+	
+	ArrayList<Answer> aList = new ArrayList<>();
 	
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -48,6 +54,24 @@
 			uidx_ = rs.getInt("uidx");
 		}
 		
+		sql = "select * from answer a, loginUser u where a.uidx = u.uidx and qidx="+qidx;
+		
+		psmtAnswer = conn.prepareStatement(sql); //실행
+		
+		rsAnswer = psmtAnswer.executeQuery();//담기
+		
+		while(rsAnswer.next()){
+			Answer answer = new Answer();
+			answer.setQidx(rsAnswer.getInt("qidx"));
+			answer.setUidx(rsAnswer.getInt("uidx"));
+			answer.setAidx(rsAnswer.getInt("aidx"));
+			answer.setAcontent(rsAnswer.getString("acontent"));
+			answer.setAdate(rsAnswer.getString("adate"));
+			answer.setUname(rsAnswer.getString("uname"));
+			
+			aList.add(answer);
+		}
+				
 
 	}catch(Exception e){
 		e.printStackTrace();
@@ -55,9 +79,11 @@
 		if(conn != null) conn.close();
 		if(psmt != null) psmt.close();
 		if(rs != null) rs.close();
+		if(psmtAnswer != null)psmtAnswer.close();
+		if(rsAnswer != null)rsAnswer.close();
 	
 	}
-
+	
 %>
     
 <!DOCTYPE html>
@@ -66,6 +92,51 @@
 <meta charset="UTF-8">
 <title>Q&A 상세보기</title>
 <link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet">
+<script src="<%=request.getContextPath()%>/js/jquery-3.6.0.min.js"></script>
+<script>
+	var uidx = 0;
+	
+	<%
+	if(login != null){
+	%>
+	uidx = <%=login.getUidx() %> 
+	<%
+	}
+	%>
+	
+	function saveR(){
+		//ajax 등록(insert reply) - 댓글 [저장]버튼 눌렀을 때 실행되는 함수 
+		
+	$.ajax({  
+		url:"answer.jsp", 
+		type:"post", 
+		data : $("form[name='answer']").serialize(), 
+		success: function(data){ 
+			var json = JSON.parse(data.trim()); 
+			var html = "<tr>";
+			html += "<td>"+json[0].uname+" <input type='hidden' name='aidx' value='"+json[0].aidx+"'></td>";
+			html += "<td>"+json[0].acontent+"</td>"; 
+			html += "<td>"
+
+			if(uidx == json[0].uidx){
+				html += "<input type='button' value='수정' onclick='modify(this)'>";
+				html += "<input type='button' value='삭제' onclick='deleteReply(this)'>";					}
+					
+			html += "</td>";
+			html += "</tr>";
+
+			$("#answerTable>tbody").append(html); 
+			
+
+			document.answer.reset();
+			
+		}
+	
+	});
+}
+			
+			
+</script>
 </head>
 <body>
 	<%@ include file="/header.jsp" %>
@@ -106,6 +177,43 @@
 			<form name="frm" action="deleteOk.jsp" method="post">
 				<input type="hidden" name="qidx" value="<%=qidx_%>">
 			</form>
+		</div>
+		
+		<div class="answerArea">
+			<div class="answerList">
+				<table id="answerTable">
+					<tbody>
+				<%for(Answer a : aList){ %><!-- 다시고치기 -->
+						<tr>
+							<th><%=a.getUname() %>  <input type="hidden" name="aidx" value="<%=a.getAidx()%>"></th>
+							<td><%=a.getAcontent()%></td>
+							<td>
+								<%if(login != null && (login.getUidx() == a.getUidx())){ %>
+								<input type="button" value="수정" onclick='modify(this)'>
+								<input type="button" value="삭제" onclick="deleteReply(this)">
+								<%} %>
+							</td>							
+						</tr>						
+				<%} %>
+					</tbody>
+				</table>
+				</div>
+				<br>
+			<div class="answerInput">
+				<form name ="answer">
+				<input type="hidden" name="qidx" value="<%=qidx%>">
+				<% if(login != null){ %>
+						<p>
+							<label>
+								답변하기 <input type="text" name="acontent" size="50">
+							</label>
+						</p>
+						<p>
+							<input type="button" value="등록" onclick="saveR()">
+						</p>
+				<%} %>
+				</form>
+			</div>
 		</div>
 	</div>
 	</section>
