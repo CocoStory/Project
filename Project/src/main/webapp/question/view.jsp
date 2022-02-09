@@ -104,9 +104,9 @@
 	}
 	%>
 	
+	//댓글등록
+	
 	function saveR(){
-		//ajax 등록(insert reply) - 댓글 [저장]버튼 눌렀을 때 실행되는 함수 
-		
 	$.ajax({  
 		url:"answer.jsp", 
 		type:"post", 
@@ -120,7 +120,8 @@
 
 			if(uidx == json[0].uidx){
 				html += "<input type='button' value='수정' onclick='modify(this)'>";
-				html += "<input type='button' value='삭제' onclick='deleteReply(this)'>";					}
+				html += "<input type='button' value='삭제' onclick='delteAnswer(this)'>";			
+				}
 					
 			html += "</td>";
 			html += "</tr>";
@@ -134,8 +135,71 @@
 	
 	});
 }
+	
+	
+	//댓글수정버튼 클릭시 실행함수
+	
+	function modify(obj){
+		
+		var acontent = $(obj).parent().prev().text();
+		var html = "<input type='text' name='acontent' value='"+acontent+"'><input type='hidden' name='origin' value='"+acontent+"'>";
+		$(obj).parent().prev().html(html);
+		
+		html = "<input type='button' value='저장' onclick='updateAnswer(this)'><input type='button' value='취소' onclick='cancelAnswerModify(this)'>";
+		$(obj).parent().html(html);
+		
+	}
+	
+	
+	
+	//댓글수정창 들어가서 수정에 성공했을 시 실행 되는 함수
+	//val() - form의 값을 가져오거나 값을 설정할 수 있다. 
+	//obj(button)의 parent(td)의 prev(앞)에서 td와 th를 찾아 input을 find하기.
+	//post:date 보내줄 때 사용 //date:전송할 데이터 
+	//success에서의 function(data)여기서 data는 url 실행시 결과로 받아오는 것을 의미함. 
+	//function() 에서 ()의 이름은 꼭 data가 아니라 아무 이름이나 들어가도 됨.
+	
+	
+	
+	function updateAnswer(obj){
+		var aidx = $(obj).parent().prev().prev().find("input:hidden").val();
+		var acontent = $(obj).parent().prev().find("input:text").val();
+		
+	$.ajax({	
+		url:"updateAnswer.jsp",
+		type:"post",
+		data:"aidx="+aidx+"&acontent="+acontent,
+		success : function(data){	
+			$(obj).parent().prev().html(acontent);
 			
-			
+			var html = "<input type='button' value='수정' onclick='modify(this)'>";
+			html += "<input type='button' value='삭제' onclick='delteAnswer(this)'>";					
+			$(obj).parent().html(html);
+		}
+	});
+}
+	
+	
+	
+	
+	//댓글수정버튼을 클릭후 수정에 취소한 경우에 실행되는 함수 
+	
+	function cancelAnswerModify(obj){
+		
+		var originContent = $(obj).parent().prev().find("input[name='origin']").val();
+		$(obj).parent().prev().html(originContent);
+		
+		var html ="";
+		html += "<input type='button' value='수정' onclick='modify(this)'>";
+		html +="<input type='button' value='삭제' onclick='delteAnswer(this)'>";
+
+		$(obj).parent().html(html);
+		
+	}
+	
+	
+	
+	
 </script>
 </head>
 <body>
@@ -183,14 +247,14 @@
 			<div class="answerList">
 				<table id="answerTable">
 					<tbody>
-				<%for(Answer a : aList){ %><!-- 다시고치기 -->
+				<%for(Answer a : aList){ %>
 						<tr>
 							<th><%=a.getUname() %>  <input type="hidden" name="aidx" value="<%=a.getAidx()%>"></th>
 							<td><%=a.getAcontent()%></td>
 							<td>
 								<%if(login != null && (login.getUidx() == a.getUidx())){ %>
 								<input type="button" value="수정" onclick='modify(this)'>
-								<input type="button" value="삭제" onclick="deleteReply(this)">
+								<input type="button" value="삭제" onclick="deleteAnswer(this)">
 								<%} %>
 							</td>							
 						</tr>						

@@ -19,7 +19,7 @@
 		psmt = conn.prepareStatement(sql);
 		psmt.setString(1,acontent);
 		
-		psmt.executeUpdate();
+		psmt.executeUpdate(); //성공시 1을 반환함 (실패는 0)
 		
 		
 	}catch(Exception e){
