@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="Project.vo.*" %>
 <%
-	LoginUser login = (LoginUser)session.getAttribute("loginUser");
+	LoginUser login = (LoginUser)session.getAttribute("loginUser");   
 %>   
 <!DOCTYPE html>
 <html>
