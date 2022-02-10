@@ -13,6 +13,7 @@
 	String uphone = uphone1 + uphone2 + uphone3;
 	String uidx = request.getParameter("uidx");
 	
+	System.out.println(uidx);
     System.out.println(uphone);
 	
 	//PK가 필요하다 - 원하는 한 건에대한 데이터를 수정하기 위해서임

@@ -198,7 +198,24 @@
 	}
 	
 	
+	//댓글삭제 함수
 	
+	function deleteAnswer(obj){
+			var YN = confirm("댓글을 삭제하시겠습니까?");
+			
+			if(YN){
+			var aidx = $(obj).parent().prev().prev().find("input:hidden").val();
+			
+			$.ajax({
+				url:"deleteAnswer.jsp",
+				type:"post",
+				data:"aidx="+aidx,
+				success:function(){
+					$(obj).parent().parent().remove();
+				}
+			});
+		}
+	}
 	
 </script>
 </head>
@@ -210,7 +227,7 @@
 			<strong>Q&A 상세보기</strong>
 		</div>
 		<hr>
-		<div class="view_table">
+		<div class="view_table"><!-- 글 공간 -->
 			<table width="100%">
 				<tr>
 					<th>글제목</th>
@@ -228,7 +245,7 @@
 				</tr>
 			</table>
 		</div>
-		<div class="view_button">
+		<div class="view_button"><!-- 목록 수정 삭제 버튼 -->
 			<button onclick="location.href='list.jsp'">목록</button>
 				
 			<% if(login != null && login.getUidx() == uidx_){ %>
@@ -243,7 +260,7 @@
 			</form>
 		</div>
 		
-		<div class="answerArea">
+		<div class="answerArea"><!-- 입력된 댓글이 나타나는 공간 -->
 			<div class="answerList">
 				<table id="answerTable">
 					<tbody>
@@ -263,7 +280,7 @@
 				</table>
 				</div>
 				<br>
-			<div class="answerInput">
+			<div class="answerInput"><!-- 댓글 입력창 -->
 				<form name ="answer">
 				<input type="hidden" name="qidx" value="<%=qidx%>">
 				<% if(login != null){ %>

@@ -10,6 +10,7 @@
 	request.setCharacterEncoding("UTF-8");   
 	
 	String uidx = request.getParameter("uidx");
+	String uname = login.getUname();
 
 	String url  = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "system";
@@ -18,13 +19,13 @@
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	
+
 	
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url,user,pass);
 		
-		String sql = " select * from question where uidx="+uidx;		
+		String sql = " select * from answer where uidx="+uidx;		
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
@@ -34,7 +35,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내가 쓴 글 보기</title>
+<title>내가 쓴 댓글 보기</title>
 <link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -42,34 +43,26 @@
 <section>
 <div class="list_wrap">
 		<div class="list_title">
-		<strong>내가 쓴 글 보기</strong>
+		<strong>내가 쓴 댓글 보기</strong>
 		</div>
-		<div class="listtable_wrap">
-		<table width="100%">
-			<thead>
-				<tr>					
-					<th width>글번호</th>
-					<th width>제목</th>
-					<th width>작성자</th>
-					<th width>작성일</th>
-				</tr>
-			</thead>
-			<tbody>
+		
+	<div class="listtable_wrap">
+		<table id ="answerTable">
 				<%
 					while(rs.next()){
 				%>
-					<tr>
-						<td><%= rs.getInt("qidx") %></td>
-						<td><a href="../question/view.jsp?qidx=<%= rs.getInt("qidx") %>"><%= rs.getString("qtitle") %></a></td>
-						<td><%= rs.getString("qwriter") %></td>
-						<td><%= rs.getString("qwdate") %></td>
-					</tr>
+				<tr>					
+					<th><%=uname %></th>
+					<td><%=rs.getString("acontent") %></td>
+					<td><input type="button" value="글보기" onclick="location.href='../question/view.jsp?qidx=<%= rs.getInt("qidx") %>'"></td>
+	<!-- 일단 qidx필요. qidx찾아서 그 글로 바로가게. qidx는 getInt로 불러올 수 있다. -->
+				</tr>
 				<%
 					}
 				%>		
 			</tbody>
 		</table>
-		</div>
+	</div>
 </div>
 </section>
 <%@ include file="/footer.jsp" %>
