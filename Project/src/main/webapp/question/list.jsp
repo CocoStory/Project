@@ -14,8 +14,13 @@
 	String searchType = request.getParameter("searchType");
 	
 	
-		
+	String nowPage = request.getParameter("nowPage");
+	int nowPageI = 1;
+	if(nowPage != null){
+		nowPageI = Integer.parseInt(nowPage);
+	}
 	
+
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "system";
 	String pass = "1234";
@@ -24,13 +29,17 @@
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	
+	PagingUtil paging  = null;
 	
 	try{
 		
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		conn = DriverManager.getConnection(url,user,pass);
-		String sql = " select * from question";
+		String sql = ""; 
+		//String sql = " select * from question";
 		
+		
+		sql = " select count(*) as total from question ";
 		if(searchValue != null && !searchValue.equals("")){
 			if(searchType.equals("qtitle")){
 				sql +=" where qtitle like '%"+searchValue+"%'";
@@ -46,8 +55,33 @@
 		psmt = conn.prepareStatement(sql);
 		rs = psmt.executeQuery();
 	
+		int total = 0;
 		
+		if(rs.next()){
+			total = rs.getInt("total"); 	
+		}
 		
+		paging = new PagingUtil(total,nowPageI,15); // 한 페이지에 들어가는 갯수 15개 
+		
+		sql = " select * from ";		
+		sql += " (select ROWNUM r , b.* from ";	//오라클에서 페이징 하는 방법 
+		sql += " (select * from question";
+		
+		if(searchValue != null && !searchValue.equals("") && !searchValue.equals("null")){
+			if(searchType.equals("qtitle")){
+				sql += " where question like '%"+searchValue+"%'";
+			}else if(searchType.equals("qwriter")){
+				sql += " where qwriter = '"+searchValue+"'";
+			}
+			
+		}
+		
+		sql += " order by qidx desc ) b)";
+		sql += " where r >= "+paging.getStart()+" and r <= "+paging.getEnd();
+		
+		psmt = conn.prepareStatement(sql);
+		
+		rs = psmt.executeQuery();
 		
 %>
 <!DOCTYPE html>
@@ -111,11 +145,32 @@
 			</tbody>
 		</table>
 		</div>
-		<!-- 
 		<div class="list_paging">
+			<% if(paging.getStartPage() > 1){
+			%>	
+				<a href="list.jsp?nowPage=<%=paging.getStartPage()-1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">&lt;</a>	
+			<%	
+			}
 			
-		</div> -->
-	
+			for(int i= paging.getStartPage(); i<=paging.getEndPage(); i++){
+				
+				if(i == paging.getNowPage()){
+			%>
+				<b class="active"><%= i %></b>
+			<%
+				}else{
+			%>
+				<a href="list.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>"><%=i %></a>				
+			<% 
+				}
+			}
+			if(paging.getEndPage() != paging.getLastPage()){
+			%>	
+				<a href="list.jsp?nowPage=<%=paging.getEndPage()+1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">&gt;</a>	
+			<%	
+			}
+			%>		
+		</div> 
 	</div>
 	</section>	
 <%@ include file="/footer.jsp" %>

@@ -5,23 +5,31 @@
 <%@ page import="org.json.simple.*" %> 
 <%@ page import="java.sql.*" %>   
 <%
+	//고쳐야함..
 	request.setCharacterEncoding("UTF-8");
 
-	String userid = request.getParameter("userid");
+	String id_value = request.getParameter("id_value");
+	boolean result = false;//기본값
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	
-	try{//연결하기
+	try{
 		conn = DBManager.getConnection();
 	
-		String sql = "select userid from loginUser";
-	
+		String sql = "select * from loginUser where userid=?";
+		
 		psmt = conn.prepareStatement(sql);
+		psmt.setString(1,id_value);
 		
-		int result = psmt.executeUpdate();
+		rs= psmt.executeQuery();
 		
+		if(rs.next()){//데이터가 중복된 경우 
+			result = true; //중복시 true 
+		}
+		
+		out.print(result); // 다시 전송 
 		
 }catch(Exception e){
 	e.printStackTrace();

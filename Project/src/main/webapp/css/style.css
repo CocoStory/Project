@@ -248,18 +248,31 @@ button:hover{
 	padding:20px;
 }	
 
-.insert_table input[type=button],input[type=submit]{
+.insert_table input[type=button], .insert_table input[type=submit], .modify_table button{
+	margin:10px;
 	background-color:#b5d0e0;
 	color:white;
-	width:100%;
-	border-radius:12px;
+	width:150px;
+	display:inline-block;
+	border-radius:8px;
 	border:none;
 	height:40px;
 	font-size:large;
 	font-weight:bold;
 }
 
-.insert_table input[type=button]:hover, input[type=submit]:hover{
+input[type=submit]{
+	width:25%;
+	height:45px;
+	background-color:#b5d0e0;
+	color:white;
+	border-radius:8px;
+	border:none;
+	font-size:large;
+	font-weight:bold;
+}
+
+.insert_table input[type=button]:hover, input[type=submit]:hover, .modify_table button:hover{
 		background-color:pink;
 }
 
@@ -506,7 +519,7 @@ input[type=button]:hover{
 	height:25px;
 }
 
-.modifyUserBox button, input[type=submit]{
+.modifyUserBox button, .modifyUserBox input[type=submit]{
 	width:25%;
 	border-radius:0px;
 	border:none;
@@ -605,5 +618,46 @@ input[type=button]:hover{
 	border:1px solid #dcdcdc;
 	font-size:medium;
 	font-weight:medium;
+	
+}
+
+.red{
+	margin:10px;
+	color:red;
+	font-size:12px;
+	display:inline;
+}
+
+.list_paging{
+	margin-top:40px;
+}
+
+.list_paging a{
+	display:inline-block;
+	text-decoration: none;
+	font-weight: 500;
+	font-size:18px;
+	color:#96a0ad;
+	margin:8px;
+	padding:4px 10px;
+	border-radius:100%;	
+	
+}
+
+.list_paging a:hover{
+	background:aliceblue;	
+}
+
+.active{
+	display:inline-block;
+	text-decoration: none;
+	font-weight: 500;
+	font-size:18px;
+	background:lightskyblue;
+	color:white;
+	margin:13px;
+	padding:4px 10px;
+	border:none;
+	border-radius:100%;	
 	
 }
