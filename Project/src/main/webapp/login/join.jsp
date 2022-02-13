@@ -92,13 +92,13 @@
 	
 	//중복체크
 	function duplication(obj){
-		console.log("1"+$(obj));
-		console.log("2"+$(obj).prev());
-		console.log("3"+$(obj).prev().val());
+		//console.log($(obj).prev().val());
+		//console.log(document.getElementById('id_span'));
+		
 		var id_value = $(obj).prev().val();
-
-		var id_span = obj.parentElement.getElementsById("id_span");
-		//ajax선언 해야함 
+		var id_span = document.getElementById('id_span');
+		
+		//ajax선언
 		$.ajax({
 			url:"idCheck.jsp",
 			type:"post",
@@ -106,9 +106,9 @@
 			success:function(data){
 				var result = data.trim();
 				if(result){//result는 데이터 중복을 의미함
-					span.textContent = "중복된 아이디 입니다";
+					id_span.textContent = "사용불가";
 				}else{//데이터가 중복이 아닌 경우
-					span.textContent = "사용 가능한 아이디 입니다";
+					id_span.textContent = "사용가능";
 				}
 			}
 		});
