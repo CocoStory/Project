@@ -202,7 +202,7 @@
 		var red4 = $("#red4").html();
 		var red5 = $("#red5").html();
 		
-		var id_span = document.getElementById('id_span');
+		var id_span = $("#id_span").html();
 		
 		
 		if((pwd == "")||(id == "")||(phone2 == "")||(phone3 == "")){
@@ -214,12 +214,12 @@
 		}else if((red1 != "")||(red2 != "")||(red3 != "")||(red4 != "")||(red5 != "")){
 			alert("형식이 바르지 않습니다");
 			return false;
-		}else if(id_span.textContent = "사용불가"){
-			alert("아이디가 중복됩니다");
-			return false;
-		}else if(id_span.textContent = ""){
+		}else if(id_span == ""){
 			alert("아이디 중복체크를 해주세요");
 			return false;	
+		}else if(id_span == "사용불가"){
+			alert("아이디가 중복됩니다");
+			return false;
 		}else{
 			alert("회원가입이 완료되었습니다");
 			return true;	
