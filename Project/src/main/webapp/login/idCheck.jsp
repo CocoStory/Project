@@ -5,11 +5,9 @@
 <%@ page import="org.json.simple.*" %> 
 <%@ page import="java.sql.*" %>   
 <%
-	//고쳐야함..
 	request.setCharacterEncoding("UTF-8");
 
 	String id_value = request.getParameter("id_value");
-	boolean result = false;//기본값
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -18,18 +16,22 @@
 	try{
 		conn = DBManager.getConnection();
 	
-		String sql = "select * from loginUser where userid=?";
+		String sql = "select * from loginUser where userid='"+id_value+"'";
 		
 		psmt = conn.prepareStatement(sql);
-		psmt.setString(1,id_value);
-		
 		rs= psmt.executeQuery();
 		
+		JSONArray list = new JSONArray();
+		
 		if(rs.next()){//데이터가 중복된 경우 
-			result = true; //중복시 true 
+			JSONObject jobj = new JSONObject();
+		
+			jobj.put("userid",rs.getString("userid"));
+			
+			list.add(jobj);
 		}
 		
-		out.print(result); // 다시 전송 
+		out.print(list.toJSONString()); // 다시 전송 
 		
 }catch(Exception e){
 	e.printStackTrace();

@@ -4,6 +4,7 @@
 
 <%
 	LoginUser m = (LoginUser)session.getAttribute("loginUser");
+	//session.setMaxInactiveInterval(1200);//세션유지시간 1200초
 %>
 <nav>
 	<div class="menu">

@@ -69,9 +69,9 @@
 		
 		if(searchValue != null && !searchValue.equals("") && !searchValue.equals("null")){
 			if(searchType.equals("qtitle")){
-				sql += " where question like '%"+searchValue+"%'";
+				sql += " where qtitle like '%"+searchValue+"%'";
 			}else if(searchType.equals("qwriter")){
-				sql += " where qwriter = '"+searchValue+"'";
+				sql += " where qwriter like '%"+searchValue+"%'";
 			}
 			
 		}

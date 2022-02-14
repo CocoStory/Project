@@ -8,6 +8,10 @@
 <link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet">
 </head>
 <body>
-	© Coding story. All Rights Reserved.
+	<footer>
+		<div class="footer">
+		© Coding story. All Rights Reserved.
+		</div>
+	</footer>
 </body>
 </html>

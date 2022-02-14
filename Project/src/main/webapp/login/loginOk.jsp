@@ -5,6 +5,7 @@
 <%@ page import = "Project.vo.*" %>
 
 <%
+	//입력받은 ID와 비밀번호를 파라미터로 요청
 	String userid = request.getParameter("userid");
 	String upwd = request.getParameter("upwd");
 	
@@ -31,7 +32,7 @@
 			login.setUserid(rs.getString("userid"));
 			login.setUname(rs.getString("uname"));	//객체생성
 		
-			//세션에 담아야함
+			//세션에 uidx,userid,uname을 저장해줌 
 			session.setAttribute("loginUser",login);
 			
 		}

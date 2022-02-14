@@ -43,7 +43,6 @@
 				span.textContent = "비밀번호 불일치";
 			}else{
 				span.textContent = "";
-				span.style.display = "none";
 			}
 			
 		}else if(type == 'name'){
@@ -56,7 +55,7 @@
 				span.textContent = "형식오류";
 			}else{
 				span.textContent = "";
-				span.style.display = "none";
+				
 			}
 
 		}else if(type == 'phone2'){
@@ -69,7 +68,7 @@
 				span.textContent = "형식오류";
 			}else{
 				span.textContent = "";
-				span.style.display = "none";
+				
 			}
 			
 		}else if(type == 'phone3'){
@@ -82,7 +81,7 @@
 				span.textContent = "형식오류";
 			}else{
 				span.textContent = "";
-				span.style.display = "none";
+				
 			}
 		}
 	}	
@@ -104,11 +103,15 @@
 			type:"post",
 			data:"id_value="+id_value,
 			success:function(data){
-				var result = data.trim();
-				if(result){//result는 데이터 중복을 의미함
+				var json = JSON.parse(data.trim());            
+				if(json.length != 0){
 					id_span.textContent = "사용불가";
-				}else{//데이터가 중복이 아닌 경우
+					id_span.style.color = "red";
+					idCheck = false;
+				}else{
 					id_span.textContent = "사용가능";
+					id_span.style.color = "blue";
+					idCheck = false;
 				}
 			}
 		});
@@ -191,12 +194,15 @@
 		var phone2 = document.getElementById('phone2').value;
 		var phone3 = document.getElementById('phone3').value;
 		var pwd_check = document.getElementById('pwd_check').value;
+	
+		//value는 input에 들어가는 값이니까 span에서는 적용 안될 수 있음.그래서 html로 함	
+		var red1 = $("#red1").html();
+		var red2 = $("#red2").html();
+		var red3 = $("#red3").html();
+		var red4 = $("#red4").html();
+		var red5 = $("#red5").html();
 		
-		var red1 = document.getElementById('red1').value;
-		var red2 = document.getElementById('red2').value;
-		var red3 = document.getElementById('red3').value;
-		var red4 = document.getElementById('red4').value;
-		var red5 = document.getElementById('red5').value;
+		var id_span = document.getElementById('id_span');
 		
 		
 		if((pwd == "")||(id == "")||(phone2 == "")||(phone3 == "")){
@@ -208,10 +214,23 @@
 		}else if((red1 != "")||(red2 != "")||(red3 != "")||(red4 != "")||(red5 != "")){
 			alert("형식이 바르지 않습니다");
 			return false;
+		}else if(id_span.textContent = "사용불가"){
+			alert("아이디가 중복됩니다");
+			return false;
+		}else if(id_span.textContent = ""){
+			alert("아이디 중복체크를 해주세요");
+			return false;	
 		}else{
 			alert("회원가입이 완료되었습니다");
 			return true;	
-		}
-}
+		}	
+		
+		
+		
+	}
+	
+	
+	
+	
 </script>
 </html>

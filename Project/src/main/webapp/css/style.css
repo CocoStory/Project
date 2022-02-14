@@ -65,7 +65,25 @@ section{
 		background: white;
 		text-align: center;
 		margin: 10vh auto;
+		padding-bottom:60px;/*footer의 height 값과 동일*/
 	}
+	
+
+footer{
+	width:100%;
+	height:60px;
+	bottom:0px;
+	position: fixed-bottom;
+	text-align :center;
+}
+.footer{
+	padding-top:20px;
+	background:whitesmoke;
+	width:100%;
+	height:100%;
+	color:silver;
+	
+}
 	
 /*.list_wrap, .view_wrap, .modfiy_wrap, .insert_wrap, .index_wrap{
 	width:100%;
@@ -526,6 +544,10 @@ input[type=button]:hover{
 	height:40px;
 }
 
+.modifyUserBox input[type=text]{
+	width:60px;
+}
+
 /*댓글*/
 .answerInput{
 	width:100%;
@@ -660,4 +682,10 @@ input[type=button]:hover{
 	border:none;
 	border-radius:100%;	
 	
+}
+
+/*modifyUser span*/
+.MU_table span{
+	color:red;
+	font-size:11.5px;
 }
