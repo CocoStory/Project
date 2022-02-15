@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head>  
 <meta charset="UTF-8">
 <title>회원가입</title>
 <script src = "<%=request.getContextPath() %>/js/jquery-3.6.0.min.js"></script>
@@ -224,13 +224,6 @@
 			alert("회원가입이 완료되었습니다");
 			return true;	
 		}	
-		
-		
-		
 	}
-	
-	
-	
-	
 </script>
 </html>

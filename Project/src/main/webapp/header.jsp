@@ -12,7 +12,7 @@
 			<a href="<%=request.getContextPath() %>/index.jsp">CodingStory;</a>
 		</div>
 		<ul>
-			<li><a href="#">Introduction</a></li>
+			<li><a href="<%=request.getContextPath() %>/recruit/list.jsp">Recruit</a></li>
 			<li><a href="<%=request.getContextPath() %>/question/list.jsp">Q&A</a></li>
 			<%
 		if(m == null){ //null 상태는 로그인 하지 않은 상태 

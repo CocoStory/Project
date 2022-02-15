@@ -31,6 +31,7 @@
 		</div>
 		<div class="notuser">
 			<p>계정이 없으신가요?<a href="join.jsp"> 회원가입</a></p>
+		<!--<p>비밀번호를 잊어버리셨나요?<a href="join.jsp">비밀번호 찾기</a></p> 시간 나면 하기 -->
 		</div>
 	</div>
 	</section>	
