@@ -62,6 +62,8 @@
 		
 		paging = new PagingUtil(total,nowPageI,15); // 한 페이지에 들어가는 갯수 15개 
 		
+		
+		
 		sql = " select * from ";		
 		sql += " (select ROWNUM r , b.* from ";	//오라클에서 페이징 하는 방법 
 		sql += " (select * from joboffer";
@@ -96,8 +98,8 @@
 	<div class="list_wrap">
 		<div class="list_title">
 			<strong>Hello, Recruit</strong>
-			<p>궁금한 것을 물어보세요!</p>
-			<p>코딩관련한 것들을 질문하시면 답변을 달아드립니다!</p>
+			<p>채용공고입니다!</p>
+			<p>코딩스토리에서 채용공고를 확인하세요!</p>
 			<br><br>
 			<div class="list_insert_button">
 				<% if(login != null){ %>
@@ -133,7 +135,7 @@
 					while(rs.next()){
 				%>
 					<tr>
-						<td><%= rs.getInt("jidx") %></td>
+						<td><%=rs.getInt("jidx") %></td>
 						<td><a href="view.jsp?jidx=<%= rs.getInt("jidx") %>"><%= rs.getString("jtitle") %></a></td>
 						<td><%= rs.getString("jwriter") %></td>
 						<td><%= rs.getString("jdate") %></td>

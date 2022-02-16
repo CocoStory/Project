@@ -4,7 +4,7 @@
 <%	//JOBOFFER
 	LoginUser login = (LoginUser)session.getAttribute("loginUser");
 
-	String userName = "";//작성자명
+	String userName = "";
 	if(login != null){
 		userName = login.getUname();
 	}
@@ -37,6 +37,12 @@
 		  });
 		}
 	
+	function writeFn(){
+	      $("#jcontent").html($("#jcontent2").html());
+	      document.writeFrm.method = "post";
+	      document.writeFrm.action = "insertOk.jsp";
+	      document.writeFrm.submit();
+	   }
 </script>
 </head>
 <body>
@@ -48,7 +54,7 @@
 		</div>
 		<article>
 		<div class="insert_table">
-			<form action="insertOk.jsp" method="post"><!-- 입력받은 값을 보내기 위해 form 태그 활용  -->
+			<form action="insertOk.jsp" method="post" name="writeFrm"><!-- 입력받은 값을 보내기 위해 form 태그 활용  -->
 				<table width="100%">
 					<tr>
 						<th>제목</th>
@@ -63,7 +69,7 @@
 					<tr>
 						<th>내용</th>
 						<td id = "content">
-							<textarea name="jcontent" rows="15"></textarea><!-- css로 display : none 줘야함 -->
+							<textarea rows="15" id="jcontent" name="jcontent"></textarea><!-- css로 display : none 줘야함 -->
 							<div id="jcontent2" contentEditable="true"></div><!-- id(css주기용),contentEditable="true"(textarea처럼 바꿔줌)  -->
 							<!-- textarea는 이미지가 안 들어감.  -->			
 						</td>
@@ -74,7 +80,7 @@
 			</form>	
 			<!-- 파일전송 form -->
 			<form action="fileAction.jsp" id="fileFrm" class ="fileFrm" method="post" enctype="multipart/form-date">
-				<input type="file" name ="file">
+				<input type="file" name ="file1">
 				<input type="button" id="filebtn" value="이미지첨부" onclick="file_submit()">
 			</form>
 		</div>
