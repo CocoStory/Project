@@ -24,16 +24,23 @@
 	int text_num = 0;
 	int answer_num = 0;
 	
+	int text_num2 = 0;
+	
 	//댓글
 	PreparedStatement psmt = null;
 	ResultSet rsAnswer = null;
+	
+	//게시판2
+	PreparedStatement psmt2 = null;
+	ResultSet rs2 = null;
+	
 
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		
 		//데이터 베이스 커넥션
 		conn = DriverManager.getConnection(url,user,pass);
-		
+		//게시판1
 		String sql = " select count(*) from question where uidx="+uidx_;
 		
 		//Statment 생성
@@ -58,6 +65,16 @@
 		}
 		
 		
+		//게시판2
+		 sql = " select count(*) from joboffer where uidx="+uidx_;
+		 psmt2 = conn.prepareStatement(sql); //실행
+		 rs2 = psmt2.executeQuery();//담기
+		 
+		 while(rs2.next()){
+				text_num2 = rs2.getInt(1);
+			}
+			
+		
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -68,6 +85,9 @@
 		
 		if(psmt != null) psmt.close();
 		if(rsAnswer != null) rsAnswer.close();
+		
+		if(psmt2 != null) psmt2.close();
+		if(rs2 != null) rs2.close();
 		
 	}
 %>
@@ -103,7 +123,7 @@
 			<input type="button" value="내 정보 수정" onclick="location.href='modifyUser.jsp?uidx=<%=uidx_%>'">
 			</div>
 			<div class="#">
-			<p><%=text_num%><br><span>게시글</span></p>
+			<p><%=text_num+text_num2%><br><span>게시글</span></p>
 			<input type="button" value="내가 작성한 글" onclick="location.href='mytext.jsp?uidx=<%=uidx_%>'">
 			</div>
 			<div class="#">

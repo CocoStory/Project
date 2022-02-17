@@ -63,7 +63,7 @@
 <section>
 <div class="modfiy_wrap">
 	<div class="modify_title">
-			<strong>Q&A 수정하기</strong>
+			<strong>Q&amp;A 수정하기</strong>
 	</div>
 	<hr>
 	<article>

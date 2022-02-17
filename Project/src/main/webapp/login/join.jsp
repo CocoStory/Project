@@ -96,6 +96,7 @@
 		
 		var id_value = $(obj).prev().val();
 		var id_span = document.getElementById('id_span');
+		var join_btn = document.getElementById('joinBtn');
 		
 		//ajax선언
 		$.ajax({
@@ -107,14 +108,21 @@
 				if(json.length != 0){
 					id_span.textContent = "사용불가";
 					id_span.style.color = "red";
+					join_btn.style.visibility = "hidden";
 					idCheck = false;
+					
 				}else{
 					id_span.textContent = "사용가능";
 					id_span.style.color = "blue";
+					join_btn.style.visibility = "visible";
 					idCheck = false;
 				}
 			}
 		});
+		
+		
+		
+		
 	}
 </script>
 </head>
@@ -134,7 +142,7 @@
 					<label>아이디<span class="red" id="red1"></span></label>
 				</div>
 				<div class="jointable id">
-					<input type="text" name="userid" id="id" placeholder="ID 입력" onblur="checkFn('id')"> 
+					<input type="text" name="userid" id="id" placeholder="ID 입력" onblur="checkFn('id')" onchange="tryChange(this.value)"> 
 					<input type="button" value="중복확인" onclick="duplication(this);"> 
 					<span id="id_span"></span>
 				</div>
@@ -171,7 +179,7 @@
 				<div class="joinsubmit">
 					<br>
 					<br>
-					<input type="submit" value="회원가입">
+					<input type="submit" id="joinBtn" value="회원가입">
 				</div>
 				<div class="alreadyuser">
 				<p>이미 계정이 있으신가요?<a href="login.jsp"> 로그인</a></p>
@@ -224,6 +232,15 @@
 			alert("회원가입이 완료되었습니다");
 			return true;	
 		}	
+	}
+
+	
+	function tryChange(val){
+		var id_span = document.getElementById('id_span');
+		alert("id 중복체크를 해주세요");
+		
+		id_span.textContent = "";
+		
 	}
 </script>
 </html>

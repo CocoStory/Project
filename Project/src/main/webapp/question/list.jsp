@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>  
 <%@ page import="Project.vo.*" %> 
@@ -88,7 +88,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CodingStory Q&A</title>
+<title>CodingStory Q&amp;A</title>
 <link href="<%=request.getContextPath() %>/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -96,7 +96,7 @@
 	<section>
 	<div class="list_wrap">
 		<div class="list_title">
-			<strong>Hello, Q&A</strong>
+			<strong>Hello, Q&amp;A</strong>
 			<p>궁금한 것을 물어보세요!</p>
 			<p>코딩관련한 것들을 질문하시면 답변을 달아드립니다!</p>
 			<br><br>
@@ -134,7 +134,7 @@
 					while(rs.next()){
 				%>
 					<tr>
-						<td><%= rs.getInt("qidx") %></td>
+						<td><%= rs.getInt(1) %></td>
 						<td><a href="view.jsp?qidx=<%= rs.getInt("qidx") %>"><%= rs.getString("qtitle") %></a></td>
 						<td><%= rs.getString("qwriter") %></td>
 						<td><%= rs.getString("qwdate") %></td>

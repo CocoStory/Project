@@ -8,7 +8,7 @@ public class DBManager {
 	public static String user = "system";
 	public static String pass = "1234";
 	
-	public static Connection getConnection() {
+	public static Connection getConnection() { 
 		
 		Connection conn = null;
 		

@@ -65,7 +65,7 @@
 		
 		
 		sql = " select * from ";		
-		sql += " (select ROWNUM r , b.* from ";	//오라클에서 페이징 하는 방법 
+		sql += " (select ROWNUM r , b.* from ";	
 		sql += " (select * from joboffer";
 		
 		if(searchValue != null && !searchValue.equals("") && !searchValue.equals("null")){
@@ -135,7 +135,7 @@
 					while(rs.next()){
 				%>
 					<tr>
-						<td><%=rs.getInt("jidx") %></td>
+						<td><%=rs.getInt(1) %></td><!-- db중 첫번째 열 나옴 -->
 						<td><a href="view.jsp?jidx=<%= rs.getInt("jidx") %>"><%= rs.getString("jtitle") %></a></td>
 						<td><%= rs.getString("jwriter") %></td>
 						<td><%= rs.getString("jdate") %></td>
